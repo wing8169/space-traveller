@@ -1,0 +1,1 @@
+open the folder and click on "main.exe" to play. Good luck have fun !
