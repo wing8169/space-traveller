@@ -48,10 +48,6 @@ import time
 
 k = PyKeyboard()
 
-# pressing a key
-# which you then follow with a release of the key
-# k.release_key('w')
-
 ser = serial.Serial('COM5', 9600, timeout=0)
 
 
@@ -59,27 +55,27 @@ def worker():
     while True:
         msg = ser.readline()
         if len(msg) > 0:
-            if 'w' in msg:
+            if '2' in msg:
                 k.press_key('w')
             else:
                 k.release_key('w')
-            if 's' in msg:
+            if '5' in msg:
                 k.press_key('s')
             else:
                 k.release_key('s')
-            if 'a' in msg:
+            if '4' in msg:
                 k.press_key('a')
             else:
                 k.release_key('a')
-            if 'd' in msg:
+            if '6' in msg:
                 k.press_key('d')
             else:
                 k.release_key('d')
-            if 'j' in msg:
+            if 'A' in msg:
                 k.press_key('j')
             else:
                 k.release_key('j')
-            if 'k' in msg:
+            if 'B' in msg:
                 k.press_key('k')
             else:
                 k.release_key('k')
