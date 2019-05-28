@@ -41,35 +41,54 @@ from setting import *
 from screens import *
 import pygame as pg
 
-# from threading import Thread
-# import serial
-# from pykeyboard import PyKeyboard
+from threading import Thread
+import serial
+from pykeyboard import PyKeyboard
+import time
 
-# k = PyKeyboard()
+k = PyKeyboard()
 
-# # pressing a key
-# k.press_key('w')
-# # which you then follow with a release of the key
-# # k.release_key('w')
+# pressing a key
+# which you then follow with a release of the key
+# k.release_key('w')
 
-# # ser = serial.Serial('/dev/pts/3', 9600, timeout=0)
-
-
-# def worker():
-#     while True:
-#         msg = input()
-#         # msg = ser.readline()
-#         if len(msg) > 0:
-#             if msg == 'w':
-#                 k.press_key('w')
-#             else:
-#                 k.release_key('w')
-#             # print("Message Received: %s" % msg)
+ser = serial.Serial('COM5', 9600, timeout=0)
 
 
-# t = Thread(target=worker)
-# t.daemon = True
-# t.start()
+def worker():
+    while True:
+        msg = ser.readline()
+        if len(msg) > 0:
+            if 'w' in msg:
+                k.press_key('w')
+            else:
+                k.release_key('w')
+            if 's' in msg:
+                k.press_key('s')
+            else:
+                k.release_key('s')
+            if 'a' in msg:
+                k.press_key('a')
+            else:
+                k.release_key('a')
+            if 'd' in msg:
+                k.press_key('d')
+            else:
+                k.release_key('d')
+            if 'j' in msg:
+                k.press_key('j')
+            else:
+                k.release_key('j')
+            if 'k' in msg:
+                k.press_key('k')
+            else:
+                k.release_key('k')
+            print("Message Received: %s" % msg)
+
+
+t = Thread(target=worker)
+t.daemon = True
+t.start()
 
 
 class Game:
